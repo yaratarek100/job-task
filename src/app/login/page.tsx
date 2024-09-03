@@ -6,7 +6,14 @@ import { useFormik } from "formik";
 import axios from "axios";
 
 export default function Login() {
-  const [userToken, setuserToken] = useState("");
+
+  useEffect(()=>{
+    localStorage.setItem("userToken", null);
+    localStorage.setItem("userData", null);
+
+  },[])
+
+
   const [errorMessage, seterrorMessage] = useState("");
 
   function handelRegistration(values : any) {
@@ -38,8 +45,7 @@ export default function Login() {
       .then((response) => {
         let data = response.data;
         let accessToken = data.access;
-        setuserToken(accessToken);
-        localStorage.setItem("userToken", userToken);
+        localStorage.setItem("userToken", accessToken);
         window.location.href = '/profile';
       })
       .catch((error) => {

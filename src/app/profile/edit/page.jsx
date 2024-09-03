@@ -1,10 +1,8 @@
 "use client";
-import { Formik, useFormik } from "formik";
-import React, { useState } from "react";
+import {  useFormik } from "formik";
 import axios from "axios";
 
-export default function Edit({ clickedSrc, setClickedSrc }) {
-  const [openPopUp, setopenPopUp] = useState(true);
+export default function Edit() {
 
   let user = JSON.parse(localStorage.getItem("userData"));
   let userToken = localStorage.getItem("userToken");

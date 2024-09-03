@@ -10,15 +10,19 @@ import {
   faPen,
 } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../_components/navbar/page";
-import React, { createContext, useState, useEffect } from "react";
+import React, {  useState, useEffect } from "react";
 import axios from "axios";
-import Personal from "./personal/page";
 
 export default function ProfileBody({ children }: any) {
+
   const [user, setuser] = useState({});
+
   function getUserData() {
     let Url = "https://cyparta-backend-gf7qm.ondigitalocean.app/api/profile/";
+
     let userToken = localStorage.getItem("userToken");
+
+   
 
     axios
       .get(Url, {
@@ -41,9 +45,10 @@ export default function ProfileBody({ children }: any) {
     getUserData();
   }, []);
 
-  return (
-    <>
 
+ 
+
+    return(      <>
       <div className="profileHeader  p-5 border-b text-[#262626]">
         <div className="top flex gap-2 justify-end items-center">
           <FontAwesomeIcon icon={faBell} />
@@ -69,7 +74,7 @@ export default function ProfileBody({ children }: any) {
               height={100}
               alt="user img"
               className="rounded-md  object-cover object-center block"
-            />
+              />
             <div className="userInfo flex flex-col gap-2">
               <h2 className="font-semibold text-2xl">{user.name}</h2>
               <div className="flex  items-center">
@@ -99,5 +104,6 @@ export default function ProfileBody({ children }: any) {
       </div>
 
     </>
-  );
+    )
+
 }
