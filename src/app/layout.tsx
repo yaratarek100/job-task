@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import Sidebar from "./_components/sidebar/page";
+
+library.add(fas);
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,7 +22,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} flex p-7 gap-7 bg-[#F8F8F8] `}>
+        <Sidebar></Sidebar>
+        <div className="grow">
+        {children}
+        </div>
+      </body>
     </html>
   );
 }
