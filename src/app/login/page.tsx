@@ -4,13 +4,12 @@ import Image from "next/image";
 import logo from "../../../public/e7003b653626b4899b379c517657a039.png";
 import { useFormik } from "formik";
 import axios from "axios";
-import router from "next/router";
 
 export default function Login() {
   const [userToken, setuserToken] = useState("");
   const [errorMessage, seterrorMessage] = useState("");
 
-  function handelRegistration(values) {
+  function handelRegistration(values : any) {
     handleLogin(values.email, values.password);
   }
 

@@ -6,7 +6,6 @@ export default function Personal( ) {
 
 let user =JSON.parse(localStorage.getItem("userData"))
 
-console.log(user);
 
   return (
     <div>

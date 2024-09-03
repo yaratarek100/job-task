@@ -82,7 +82,8 @@ export default function ProfileBody({ children }: any) {
           </div>
 
           <div>
-            <button className="text-white p-2 px-4 rounded-xl bg-[#262626] font-light">
+            <button className="text-white p-2 px-4 rounded-xl bg-[#262626] font-light" 
+            onClick={()=>{window.location.href = '/profile/edit';}}>
               <FontAwesomeIcon icon={faPen} className="inline" />
               Edit Profile
             </button>
