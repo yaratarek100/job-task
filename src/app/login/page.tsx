@@ -8,8 +8,8 @@ import axios from "axios";
 export default function Login() {
 
   useEffect(()=>{
-    localStorage.setItem("userToken", null);
-    localStorage.setItem("userData", null);
+    localStorage.setItem("userToken", "");
+    localStorage.setItem("userData", "");
 
   },[])
 

@@ -12,6 +12,7 @@ import {
 import Navbar from "../_components/navbar/page";
 import React, {  useState, useEffect } from "react";
 import axios from "axios";
+import Link from "next/link";
 
 export default function ProfileBody({ children }: any) {
 
@@ -48,62 +49,75 @@ export default function ProfileBody({ children }: any) {
 
  
 
-    return(      <>
-      <div className="profileHeader  p-5 border-b text-[#262626]">
-        <div className="top flex gap-2 justify-end items-center">
-          <FontAwesomeIcon icon={faBell} />
-          <Image
-            src={user.image}
-            alt="user img"
-            width={64}
-            height={64}
-            className="rounded-full  object-cover object-center"
-          />
+  return (
+    <>
+      {localStorage.getItem("userToken") === "" ?
+       (
+        <div className="alert flex justify-center items-center h-full w-full">
+          <p className="font-light text-2xl text-center">
+            You have to login first <Link href={"/login"} className="bg-red-400 p-2 px-4 text-white rounded-md w-fit mx-auto m-5 text-base block ">Login</Link>
+          </p>
         </div>
-
-        <h3 className="mb-5 font-semibold">
-          Employees <FontAwesomeIcon icon={faChevronRight} className="inline" />{" "}
-          Profile
-        </h3>
-
-        <div className="flex justify-between items-end">
-          <div className="flex gap-5 ">
-            <Image
-              src={user.image}
-              width={100}
-              height={100}
-              alt="user img"
-              className="rounded-md  object-cover object-center block"
+      ) : (
+        <>
+          <div className="profileHeader p-5 border-b text-[#262626]">
+            <div className="top flex gap-2 justify-end items-center">
+              <FontAwesomeIcon icon={faBell} />
+              <Image
+                src={user.image}
+                alt="user img"
+                width={64}
+                height={64}
+                className="rounded-full object-cover object-center"
               />
-            <div className="userInfo flex flex-col gap-2">
-              <h2 className="font-semibold text-2xl">{user.name}</h2>
-              <div className="flex  items-center">
-                <FontAwesomeIcon icon={faBriefcase} /> <span>{user.bio}</span>
+            </div>
+  
+            <h3 className="mb-5 font-semibold">
+              Employees <FontAwesomeIcon icon={faChevronRight} className="inline" />{" "}
+              Profile
+            </h3>
+  
+            <div className="flex justify-between items-end">
+              <div className="flex gap-5">
+                <Image
+                  src={user.image}
+                  width={100}
+                  height={100}
+                  alt="user img"
+                  className="rounded-md object-cover object-center block"
+                />
+                <div className="userInfo flex flex-col gap-2">
+                  <h2 className="font-semibold text-2xl">{user.name}</h2>
+                  <div className="flex items-center">
+                    <FontAwesomeIcon icon={faBriefcase} /> <span>{user.bio}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <FontAwesomeIcon icon={faEnvelope} /> <span>{user.email}</span>
+                  </div>
+                </div>
               </div>
-              <div className="flex  items-center">
-                <FontAwesomeIcon icon={faEnvelope} /> <span>{user.email}</span>
+  
+              <div>
+                <button
+                  className="text-white p-2 px-4 rounded-xl bg-[#262626] font-light"
+                  onClick={() => {
+                    window.location.href = "/profile/edit";
+                  }}
+                >
+                  <FontAwesomeIcon icon={faPen} className="inline" />
+                  Edit Profile
+                </button>
               </div>
             </div>
           </div>
-
-          <div>
-            <button className="text-white p-2 px-4 rounded-xl bg-[#262626] font-light" 
-            onClick={()=>{window.location.href = '/profile/edit';}}>
-              <FontAwesomeIcon icon={faPen} className="inline" />
-              Edit Profile
-            </button>
+  
+          <div className="profileBody my-2 p-5">
+            <Navbar></Navbar>
+            {children}
           </div>
-        </div>
-      </div>
+        </>
 
-      <div className="profileBody my-2 p-5">
-        <Navbar></Navbar>
-
-        {children}
-
-      </div>
-
+      )}
     </>
-    )
-
+  );
 }
