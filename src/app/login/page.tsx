@@ -7,11 +7,11 @@ import axios from "axios";
 
 export default function Login() {
 
-  useEffect(()=>{
+  function clearData(){
     localStorage.setItem("userToken", "");
     localStorage.setItem("userData", "");
 
-  },[])
+  };
 
 
   const [errorMessage, seterrorMessage] = useState("");
@@ -50,6 +50,7 @@ export default function Login() {
       })
       .catch((error) => {
         console.error(error);
+        clearData();
         if (error.response) 
         {seterrorMessage(error.response.data.detail);}
       });
