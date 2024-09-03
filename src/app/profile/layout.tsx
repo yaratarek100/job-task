@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,41 +10,40 @@ import {
   faPen,
 } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../_components/navbar/page";
-import React, { createContext, useState,useEffect } from 'react';
+import React, { createContext, useState, useEffect } from "react";
+import axios from "axios";
+import Personal from "./personal/page";
 
-export default  function ProfileBody({ children }: any) {
+export default function ProfileBody({ children }: any) {
+  const [user, setuser] = useState({});
+  function getUserData() {
+    let Url = "https://cyparta-backend-gf7qm.ondigitalocean.app/api/profile/";
+    let userToken = localStorage.getItem("userToken");
 
-
-   function getUserData() {
-    try {
-
-      let Url = "https://cyparta-backend-gf7qm.ondigitalocean.app/api/profile/";
-      let userToken = localStorage.getItem("userToken");
-        // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI3OTQ0NDE1LCJpYXQiOjE3MjUzNTI0MTUsImp0aSI6Ijg3MjRiMGNiODUzYTRhODU4NTA2MzczODQ0MzVjNGZlIiwidXNlcl9pZCI6MjJ9.ja5Ij8tgk6BujbtJfixClQNK3x9_Hlmoqn-wD--LtGs";
-        console.log(userToken);//...........
-    
-      let res = fetch(Url, {
-        method: "GET",
+    axios
+      .get(Url, {
         headers: { Authorization: `Bearer ${userToken}` },
+      })
+
+      .then((response) => {
+        let data = response.data;
+        setuser(data);
+
+        localStorage.setItem("userData",JSON.stringify(data))
+      })
+
+      .catch((error) => {
+        console.error(error);
       });
-
-      let data = res.json();
-      console.log(data);//.............
-
-    } catch (error) {
-      console.error(error);//..................
-    }
   }
 
-
-
-  useEffect(getUserData(),[])
-
-  let user = getUserData();
-  // console.log(user);
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   return (
     <>
+
       <div className="profileHeader  p-5 border-b text-[#262626]">
         <div className="top flex gap-2 justify-end items-center">
           <FontAwesomeIcon icon={faBell} />
@@ -95,7 +94,9 @@ export default  function ProfileBody({ children }: any) {
         <Navbar></Navbar>
 
         {children}
+
       </div>
+
     </>
   );
 }

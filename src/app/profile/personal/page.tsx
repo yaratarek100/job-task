@@ -1,9 +1,12 @@
+"use client"
 import React from "react";
 
 
 export default function Personal( ) {
-let user ={}
-  console.log(user);
+
+let user =JSON.parse(localStorage.getItem("userData"))
+
+console.log(user);
 
   return (
     <div>
@@ -12,60 +15,60 @@ let user ={}
           <tr className="flex justify-between">
             <td className="w-[48%]  py-2 text-slate-400 text-sm border-b ">
               First Name
-              {/* <span className="text-slate-800 text-base block">{user.first_name}</span> */}
+              <span className="text-slate-800 text-base block">{user.first_name}</span>
             </td>
             <td className="w-[48%]  py-2 text-slate-400 text-sm border-b ">
               Last Name
-              {/* <span className="text-slate-800 text-base block">{user.last_name}</span> */}
+              <span className="text-slate-800 text-base block">{user.last_name}</span>
             </td>
           </tr>
           <tr className="flex justify-between">
             <td className="w-[48%]  py-2 text-slate-400 text-sm border-b ">
               Mobile Number
-              {/* <span className="text-slate-800 text-base block">{user.phone}</span> */}
+              <span className="text-slate-800 text-base block">{user.phone}</span>
             </td>
             <td className="w-[48%]  py-2 text-slate-400 text-sm border-b ">
               Email Address
-              {/* <span className="text-slate-800 text-base block">{user.email}</span> */}
+              <span className="text-slate-800 text-base block">{user.email}</span>
             </td>
           </tr>
           <tr className="flex justify-between">
             <td className="w-[48%]  py-2 text-slate-400 text-sm border-b ">
               Date of Birth
-              {/* <span className="text-slate-800 text-base block">{user.bio}</span> */}
+              <span className="text-slate-800 text-base block"></span>
             </td>
             <td className="w-[48%]  py-2 text-slate-400 text-sm border-b ">
               Marital Status
-              {/* <span className="text-slate-800 text-base block">{user.bio}</span> */}
+              <span className="text-slate-800 text-base block"></span>
             </td>
           </tr>
           <tr className="flex justify-between">
             <td className="w-[48%]  py-2 text-slate-400 text-sm border-b ">
               Gender
-              {/* <span className="text-slate-800 text-base block">{user.bio}</span> */}
+              <span className="text-slate-800 text-base block"></span>
             </td>
             <td className="w-[48%]  py-2 text-slate-400 text-sm border-b ">
               Nationality
-              {/* <span className="text-slate-800 text-base block">{user.bio}</span> */}
+              <span className="text-slate-800 text-base block"></span>
             </td>
           </tr>
           <tr className="flex justify-between">
             <td className="w-[48%]  py-2 text-slate-400 text-sm border-b ">
               Address
-              {/* <span className="text-slate-800 text-base block">{user.bio}</span> */}
+              <span className="text-slate-800 text-base block"></span>
             </td>
             <td className="w-[48%]  py-2 text-slate-400 text-sm border-b ">
-              {/* City<span className="text-slate-800 text-base block">{user.bio}</span> */}
+              City<span className="text-slate-800 text-base block"></span>
             </td>
           </tr>
           <tr className="flex justify-between">
             <td className="w-[48%]  py-2 text-slate-400 text-sm ">
               State
-              {/* <span className="text-slate-800 text-base block">{user.bio}</span> */}
+              <span className="text-slate-800 text-base block"></span>
             </td>
             <td className="w-[48%]  py-2 text-slate-400 text-sm ">
               Zip Code
-              {/* <span className="text-slate-800 text-base block">{user.bio}</span> */}
+              <span className="text-slate-800 text-base block"></span>
             </td>
           </tr>
         </tbody>
