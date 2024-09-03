@@ -1,5 +1,5 @@
+"use client"
 
-import React from "react";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,35 +10,38 @@ import {
   faPen,
 } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../_components/navbar/page";
+import React, { createContext, useState,useEffect } from 'react';
 
-export default async function ProfileBody({ children }: any) {
-  
-  async function getUserData() {
+export default  function ProfileBody({ children }: any) {
+
+
+   function getUserData() {
     try {
-      let Url = "https://cyparta-backend-gf7qm.ondigitalocean.app/api/profile/";
-      let userToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI3OTQ0NDE1LCJpYXQiOjE3MjUzNTI0MTUsImp0aSI6Ijg3MjRiMGNiODUzYTRhODU4NTA2MzczODQ0MzVjNGZlIiwidXNlcl9pZCI6MjJ9.ja5Ij8tgk6BujbtJfixClQNK3x9_Hlmoqn-wD--LtGs";
-      // localStorage.getItem("userToken");
 
-        // console.log(userToken);
-      let res = await fetch(Url, {
+      let Url = "https://cyparta-backend-gf7qm.ondigitalocean.app/api/profile/";
+      let userToken = localStorage.getItem("userToken");
+        // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI3OTQ0NDE1LCJpYXQiOjE3MjUzNTI0MTUsImp0aSI6Ijg3MjRiMGNiODUzYTRhODU4NTA2MzczODQ0MzVjNGZlIiwidXNlcl9pZCI6MjJ9.ja5Ij8tgk6BujbtJfixClQNK3x9_Hlmoqn-wD--LtGs";
+        console.log(userToken);//...........
+    
+      let res = fetch(Url, {
         method: "GET",
         headers: { Authorization: `Bearer ${userToken}` },
       });
 
-      let data = await res.json();
-      return data;
-      } 
+      let data = res.json();
+      console.log(data);//.............
 
-      catch (error) {
-      return error;
-      }
-      }
-      
-      let user = await getUserData();
-      // console.log(user);
+    } catch (error) {
+      console.error(error);//..................
+    }
+  }
 
 
+
+  useEffect(getUserData(),[])
+
+  let user = getUserData();
+  // console.log(user);
 
   return (
     <>
@@ -62,19 +65,16 @@ export default async function ProfileBody({ children }: any) {
         <div className="flex justify-between items-end">
           <div className="flex gap-5 ">
             <Image
-            src={user.image}
-            width={100}
-            height={100}
+              src={user.image}
+              width={100}
+              height={100}
               alt="user img"
               className="rounded-md  object-cover object-center block"
             />
             <div className="userInfo flex flex-col gap-2">
-              <h2 className="font-semibold text-2xl">
-                {user.name}
-              </h2>
+              <h2 className="font-semibold text-2xl">{user.name}</h2>
               <div className="flex  items-center">
-                <FontAwesomeIcon icon={faBriefcase} />{" "}
-                <span>{user.bio}</span>
+                <FontAwesomeIcon icon={faBriefcase} /> <span>{user.bio}</span>
               </div>
               <div className="flex  items-center">
                 <FontAwesomeIcon icon={faEnvelope} /> <span>{user.email}</span>
@@ -94,12 +94,7 @@ export default async function ProfileBody({ children }: any) {
       <div className="profileBody my-2 p-5">
         <Navbar></Navbar>
 
-        {/* {children} */}
-
-        {React.Children.map(children, (child) => 
-    React.cloneElement(child, { user })
-  )}
-
+        {children}
       </div>
     </>
   );

@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function Personal({ user }: { user: any }) {
 
-  // let user ={}
+export default function Personal( ) {
+let user ={}
   console.log(user);
 
   return (
@@ -12,7 +12,7 @@ export default function Personal({ user }: { user: any }) {
           <tr className="flex justify-between">
             <td className="w-[48%]  py-2 text-slate-400 text-sm border-b ">
               First Name
-              <span className="text-slate-800 text-base block">{user.first_name}</span>
+              {/* <span className="text-slate-800 text-base block">{user.first_name}</span> */}
             </td>
             <td className="w-[48%]  py-2 text-slate-400 text-sm border-b ">
               Last Name
