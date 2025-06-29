@@ -23,7 +23,12 @@ interface IUser {
 
 export default function ProfileBody({ children }: any) {
 
-  const [user, setuser] = useState<IUser>({});
+  const [user, setuser] = useState<IUser>({
+  image: "",
+  name: "",
+  bio: "",
+  email: "",
+});
 
   function getUserData() {
     let Url = "https://cyparta-backend-gf7qm.ondigitalocean.app/api/profile/";
