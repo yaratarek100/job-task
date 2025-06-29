@@ -14,9 +14,16 @@ import React, {  useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 
+interface IUser {
+  image: string;
+  name: string;
+  bio: string;
+  email: string;
+}
+
 export default function ProfileBody({ children }: any) {
 
-  const [user, setuser] = useState({});
+  const [user, setuser] = useState<IUser>({});
 
   function getUserData() {
     let Url = "https://cyparta-backend-gf7qm.ondigitalocean.app/api/profile/";
